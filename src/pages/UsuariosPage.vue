@@ -45,7 +45,7 @@
               round
               flat
             >
-              <q-icon name="edit" />
+              <q-icon name="edit" :style="{ color: '#f59e0b'}"/>
               <q-tooltip>Editar</q-tooltip>
             </q-btn>
             <q-btn
@@ -56,7 +56,7 @@
               flat
             >
             
-            <q-icon name="delete" />
+            <q-icon name="delete" color="red" />
               <q-tooltip>Eliminar</q-tooltip>
             </q-btn>
           </div>
