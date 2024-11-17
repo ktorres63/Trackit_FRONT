@@ -59,7 +59,6 @@ const estadoLabels = {
 
 // Datos para almacenar los paquetes y usuarios
 const packages = ref([]);
-const userOptions = ref([]);
 const loading = ref(true);
 const filter = "";
 const pagination = { page: 1, rowsPerPage: 10 };
