@@ -38,6 +38,16 @@
         <q-td :props="props">
           <div class="tw-flex tw-justify-center tw-gap-2">
             <q-btn
+              dense
+              round
+              flat
+              class="tw-bg-decoration"
+              @click="viewQRCode(props.row)"
+            >
+              <q-icon name="qr_code" color="green" />
+              <q-tooltip>Ver QR</q-tooltip>
+            </q-btn>
+            <q-btn
               data-test="edit-btn"
               class="tw-bg-decoration"
               dense
@@ -121,6 +131,28 @@
         </q-card-actions>
       </q-card>
     </q-dialog>
+
+    <!-- Diálogo para mostrar el QR -->
+    <q-dialog v-model="qrDialog">
+      <q-card style="width: 400px; max-width: 90vw">
+        <q-card-section>
+          <div class="text-h6">Código QR del Paquete</div>
+        </q-card-section>
+        <q-card-section class="tw-flex tw-justify-center">
+          <img
+            :src="selectedPackageQR"
+            alt="QR Code"
+            class="tw-w-64 tw-h-64 tw-object-contain"
+          />
+        </q-card-section>
+        <q-card-actions align="right">
+          <q-btn flat label="Cerrar" @click="closeQRDialog" />
+        </q-card-actions>
+      </q-card>
+    </q-dialog>
+
+
+  
   </div>
 </template>
 <script setup>
@@ -147,6 +179,10 @@ const loading = ref(true);
 const filter = "";
 const pagination = { page: 1, rowsPerPage: 10 };
 const packageDialog = ref(false); // Controlar la visibilidad del diálogo de paquetes
+const qrDialog = ref(false);
+const selectedPackageQR = ref("");
+
+
 
 const newPackage = ref({
   usuario: null,
@@ -233,6 +269,18 @@ const createPackage = async () => {
   } finally {
     creatingPackage.value = false;
   }
+};
+
+// Función para abrir el diálogo del QR
+const viewQRCode = (row) => {
+  selectedPackageQR.value = row.qr_code; // Usar la URL del QR del paquete seleccionado
+  qrDialog.value = true;
+};
+
+// Función para cerrar el diálogo del QR
+const closeQRDialog = () => {
+  qrDialog.value = false;
+  selectedPackageQR.value = "";
 };
 
 // Cargar los usuarios y los paquetes cuando el componente se monta

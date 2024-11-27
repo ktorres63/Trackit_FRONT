@@ -125,7 +125,7 @@ const columns = [
 const fetchUsers = async () => {
   loading.value = true;
   try {
-    const response = await axios.get(`${API_URL}usuario/api/list/`);
+    const response = await axios.get(`${API_URL}/usuario/api/list/`);
     users.value = response.data; // Almacenamos los usuarios en la referencia
   } catch (error) {
     console.error("Error fetching users:", error);
@@ -155,7 +155,7 @@ const closeDialog = () => {
 const createUser = async () => {
   try {
     await axios.post(
-      `${API_URL}usuario/api/create/`,
+      `${API_URL}/usuario/api/create/`,
       newUser.value
     );
     fetchUsers(); // Actualizamos la lista de usuarios después de crear
