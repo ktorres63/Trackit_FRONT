@@ -271,7 +271,7 @@ const createPackage = async () => {
   }
 };
 
-// Función para abrir el diálogo del QR
+// Función para abrir el diálogo del QR ---
 const viewQRCode = (row) => {
   selectedPackageQR.value = row.qr_code; // Usar la URL del QR del paquete seleccionado
   qrDialog.value = true;
